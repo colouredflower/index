@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="https://www.rvdizajn.com/jpopup/css/jPopup.css" rel="stylesheet">
+<title>CAPTCHA Validation Page</title>
+<link rel="icon" href="https://lh3.googleusercontent.com/ogw/ADea4I6_xoRJO_qqwcxnMBTwrnrGbqzbNcZ5uNERKxdokA=s83-c-mo" type="image/x-icon" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<script src="https://js.hcaptcha.com/1/api.js?reportapi=https%3A%2F%2Faccounts.hcaptcha.com&custom=False" type="text/javascript" async defer></script>
+<script src="https://accounts.hcaptcha.com/static/js/b.js" type="text/javascript" async defer></script>
+<style type="text/css">
+    html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-family:-apple-system,helvetica,arial,sans-serif;font-size:14px;vertical-align:baseline}fieldset{border:1px solid #ebebeb;padding:16px}form label{display:block;line-height:29px}form ul li{margin-bottom:10px}input{font-family:-apple-system,helvetica,arial,sans-serif;font-size:14px}ul{list-style:none}.sample-form{width:335px;padding:16px}.hcaptcha-error{border:1px solid #dd4b39;padding:5px}.hcaptcha-error-message{color:#dd4b39;font-size:24px;padding:10px 0}.hcaptcha-success{margin:20px; font-size: 24px;}.smsg{color:green;}.wrap{overflow-wrap: anywhere;}.warning{padding: 10px 10px 0px 10px;}
+      code { font-family: 'Courier New', Courier, monospace; background-color: lightgrey;}
+    }
+ 
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+        color: #ddd;
+        background-color: #292b2b;
+        text-align: center;
+    }
+
+    header {
+        margin: 50px auto 10px auto;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 17px;
+        margin: 5px auto 15px;
+        font-weight: normal;
+    }
+
+    h2 {
+        font-size: 100px;
+        line-height: 1;
+        margin: 0 auto;
+        font-family: 'Yesteryear', cursive, serif;
+        color: #e8d639;
+        text-shadow: 3px 5px 2px #1f1f1f;
+    }
+
+    header p {
+        font-size: 14px;
+        margin: 18px 20px 0 20px;
+        line-height: 1.5;
+        color: #848484;
+        border-bottom: 1px solid #464646;
+        display: inline-block;
+    }
+
+    main {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 470px;
+        height: 60px;
+        margin: -30px 0 0 -235px;
+        border-radius: 4px;
+    }
+
+    .form {
+        box-shadow: 2px 4px 2px #1f1f1f;
+        position: relative;
+        border-radius: 4px;
+    }
+
+    .jCaptchaCanvas {
+        position: absolute;
+        top: -25px;
+        left: 15px;
+    }
+
+    .jCaptcha {
+        padding: 20px 25px 20px 20px;
+        font-size: 15px;
+        width: 320px;
+        height: 60px;
+        box-sizing: border-box;
+        outline: none;
+        border-radius: 4px 0 0 4px;
+        border: none;
+        vertical-align: middle;
+        transition: all 150ms linear;
+        box-shadow: 0 0 8px #4e4706;
+    }
+
+    .jCaptcha:focus,
+    .jCaptcha:focus~.button {
+        box-shadow: 0 0 8px #a79816;
+    }
+
+    .jCaptcha.error,
+    .jCaptcha.error~.button {
+        box-shadow: 0 0 8px #c5391a;
+    }
+
+    .jCaptcha.error~.button {
+        background: #c5391a;
+        color: #fff;
+    }
+
+    .jCaptcha.success,
+    .jCaptcha.success~.button {
+        box-shadow: 0 0 8px #93a023;
+    }
+
+    .jCaptcha.success~.button {
+        background: #b1c317;
+        color: #fff;
+    }
+
+    .jCaptcha.disabled {
+        background-color: #eff3f6;
+        box-shadow: 0 0 8px #4e4706 !important;
+    }
+
+    .jCaptcha.disabled~.button {
+        background: #e2e2e2;
+        color: #7c7c7c;
+        box-shadow: 0 0 8px #656565;
+        cursor: not-allowed;
+    }
+
+    .button {
+        padding: 21px 0;
+        width: 150px;
+        height: 60px;
+        vertical-align: middle;
+        box-sizing: border-box;
+        font-size: 12px;
+        font-weight: bold;
+        background: #e8d639;
+        cursor: pointer;
+        border: none;
+        color: #292b2b;
+        line-height: 1;
+        text-transform: uppercase;
+        border-radius: 0 4px 4px 0;
+        margin-left: -4px;
+        letter-spacing: 0.5px;
+        transition: all 150ms linear;
+        box-shadow: 0 0 8px #4e4706;
+        outline: none;
+    }
+
+    .button:hover,
+    .button:focus {
+        background: #e8d20b;
+    }
+
+    .codeBtn {
+        display: inline-block;
+        margin: 15px auto 0 auto;
+        color: #ddd;
+        font-size: 15px;
+        padding: 12px;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    .btnWrap {
+        bottom: 50px;
+        left: 0;
+        right: 0;
+        position: absolute;
+    }
+
+    .jPopup .content {
+        max-height: 82%;
+        margin: 40px 10px 0 10px;
+        text-align: center;
+        color: #292b2b;
+        font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+        overflow: auto;
+    }
+
+    .jPopup .content strong {
+        font-size: 30px;
+        display: block;
+        padding-bottom: 10px;
+    }
+
+    .jPopup .content p {
+        font-size: 16px;
+        text-align: left;
+        display: inline-block;
+        padding-bottom: 50px;
+        white-space: nowrap;
+    }
+
+    .jPopup .content span {
+        font-size: 16px;
+        text-align: left;
+        display: block;
+        padding-bottom: 5px;
+        color: #999;
+        font-style: italic;
+    }
+
+    @media screen and (max-width: 540px) {
+
+        h2 {
+            font-size: 60px;
+        }
+
+        header p {
+            padding-bottom: 7px;
+        }
+
+        main {
+            position: static;
+            left: auto;
+            top: auto;
+            width: 280px;
+            margin: 100px auto 100px auto;
+            height: auto;
+        }
+
+        .jCaptcha {
+            width: 180px;
+            height: 50px;
+            padding: 15px 20px 15px 15px;
+        }
+
+        .btnWrap {
+            position: static;
+            left: auto;
+            right: auto;
+            bottom: auto;
+            padding-bottom: 50px;
+        }
+
+        .button {
+            width: 100px;
+            height: 50px;
+            padding: 16px 0;
+        }
+
+        .jPopup .content p,
+        .jPopup .content span {
+            font-size: 13px;
+        }
+
+    }
+    </style>
+</head>
+<center>
+<body>
+<h2>Captcha By Hardik</h2>
+<br><br>
+<div aria-hidden="true" class="warning"><code>hardik.live</code> To continue solve the captcha below</div>
+
+<br><br>
+<div class="sample-form">
+<form id="hcaptcha-demo-form" method="POST">
+<fieldset>
+<legend>Verify to continue.</legend>
+<ul>
+
+<li role="presentation">
+<div class="hcaptcha-error">
+
+<div id="hcaptcha-demo" class="h-captcha" data-sitekey="7cef72d9-699a-47e6-b236-b06d8eabd9c7" data-callback="onSuccess" data-expired-callback="onExpire"></div>
+<script>
+                      // success callback
+                      var onSuccess = function(response) {
+                        var errorDivs = document.getElementsByClassName("hcaptcha-error");
+                        if (errorDivs.length) {
+                          errorDivs[0].className = "";
+                        }
+                        var errorMsgs = document.getElementsByClassName("hcaptcha-error-message");
+                        if (errorMsgs.length) {
+                          errorMsgs[0].parentNode.removeChild(errorMsgs[0]);
+                        }
+
+                        var logEl = document.querySelector(".hcaptcha-success");
+                        window.location.href = 'https://www.hardik.live'; //Will take you to My Site.
+                      };
+
+                      var onExpire = function(response) {
+                        var logEl = document.querySelector(".hcaptcha-success");
+                        logEl.innerHTML = "Token expired."
+                      };
+                </script>
+
+</div>
+
+</li>
+
+</ul>
+</fieldset>
+</form>
+<div class="hcaptcha-error-message" aria-live="polite">Please solve the challenge.</div>
+<br><br>
+ <p>Donate</p>
+<a href="https://opencollective.com/colouredflower">
+<img border="0" alt="Donate" src="https://opencollective.com/webpack/donate/button@2x.png?color=blue" width="250" height="50"
+<div class="hcaptcha-success smsg" aria-live="polite"></div>
+</div>
+</body>
+<script type="text/javascript">
+    // beacon example
+    function addEventHandler(object,szEvent,cbCallback){
+        if(!!object.addEventListener){ // for modern browsers or IE9+
+            return object.addEventListener(szEvent,cbCallback);
+        }
+        if(!!object.attachEvent){ // for IE <=8
+            return object.attachEvent(szEvent,cbCallback);
+        }
+    };
+    // Ex: triggers pageview beacon
+    addEventHandler(window,'load',function(){b();});
+    // Ex: triggers event beacon without pageview
+    addEventHandler(window,'load',function(){b({"vt": "e", "ec": "test_cat", "ea": "test_action"});});
+  </script>
+</center>
+</html>
